@@ -32,13 +32,6 @@ void Game::loop()
 
 	while (loopActive)
 	{
-		while (SDL_PollEvent(&e))
-		{
-			if (e.type == SDL_QUIT)
-			{
-				loopActive = false;
-			}
-		}
 
 		initTick = SDL_GetTicks();
 
