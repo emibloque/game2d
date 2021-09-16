@@ -1,5 +1,6 @@
 
 #include "Game.h"
+#include "GameLayer.h"
 
 Game::Game()
 {
@@ -16,7 +17,7 @@ Game::Game()
 	// https://wiki.libsdl.org/SDL_HINT_RENDER_SCALE_QUALITY
 	SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "1");
 
-	gameLayer = new Layer(this);
+	gameLayer = new GameLayer(this);
 
 	loopActive = true; // bucle activo
 	loop();
