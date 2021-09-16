@@ -1,0 +1,61 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Clean directory",
+      "osx": {
+        "command": "rm",
+        "args": [
+          "-rf",
+          "${workspaceFolder}/Builds/Mac_Build"
+        ]
+      }
+    },
+    {
+      "label": "Create directory",
+      "osx": {
+        "command": "mkdir",
+        "args": [
+          "-p",
+          "${workspaceFolder}/Builds/Mac_Build"
+        ]
+      }
+    },
+    {
+      "type": "shell",
+      "label": "build game",
+      "command": "g++",
+      "args": [
+        "--target=arm64-apple-darwin20.6.0",
+        "-std=c++17",
+        "-stdlib=libc++",
+        "-g",
+        "${workspaceFolder}/**/*.cpp",
+        "-o",
+        "${workspaceFolder}/Builds/Mac_Build/game",
+        "-I/usr/local/include/SDL2",
+        "-L/usr/local/lib",
+        "-lSDL2main",
+        "-lSDL2",
+        "-lSDL2_image",
+        "-lSDL2_ttf",
+        "-lSDL2_mixer"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": [
+        "$gcc"
+      ],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "dependsOrder": "sequence",
+      "dependsOn": [
+        "Clean directory",
+        "Create directory"
+      ]
+    }
+  ]
+}
