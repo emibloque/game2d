@@ -8,6 +8,9 @@ using namespace std;
 #include <SDL_image.h>
 #include <SDL_ttf.h>
 
+#include "Layer.h"
+class Layer;
+
 // Valores generales
 #define WIDTH 480
 #define HEIGHT 320
@@ -20,4 +23,6 @@ public:
 	SDL_Window *window;			// ventana
 	SDL_Renderer *renderer; // renderizador
 	bool loopActive;				// Juego activo
+
+	Layer *gameLayer;
 };
