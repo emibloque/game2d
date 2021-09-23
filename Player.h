@@ -3,6 +3,7 @@
 
 #include "Actor.h"
 #include "Projectile.h"
+#include "Animation.h"
 
 class Player : public Actor
 {
@@ -16,4 +17,14 @@ public:
 
   int shootCadence = 30;
   int shootTime = 0;
+
+  void draw() override;
+  Animation *aIdleLeft;
+  Animation *aIdleRight;
+  Animation *aRunningRight;
+  Animation *aRunningLeft;
+  Animation *animation;
+
+  Orientation orientation = Orientation::RIGHT;
+  States state = States::IDLE;
 };

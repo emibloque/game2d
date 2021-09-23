@@ -33,3 +33,19 @@ public:
 
 	Layer *gameLayer;
 };
+
+enum class States
+{
+	IDLE,
+	MOVING,
+	JUMPING,
+	DYING,
+	DEAD,
+	SHOOTING
+};
+
+enum class Orientation
+{
+	RIGHT,
+	LEFT
+};
