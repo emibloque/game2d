@@ -1,8 +1,11 @@
 #pragma once
 
+#include <list>
+
 #include "Layer.h"
 #include "Player.h"
 #include "Background.h"
+#include "Enemy.h"
 
 class GameLayer : public Layer
 {
@@ -15,6 +18,7 @@ public:
   void keysToControls(SDL_Event event);
 
   Player *player;
+  list<Enemy *> enemies;
   Background *background;
 
   bool controlShoot = false;
