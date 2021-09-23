@@ -7,6 +7,11 @@ Player::Player(float x, float y, Game *game)
 
 void Player::update()
 {
+    if (shootTime > 0)
+    {
+        shootTime--;
+    }
+
     x = x + vx;
     y = y + vy;
 }
@@ -23,5 +28,13 @@ void Player::moveY(int axis)
 
 Projectile *Player::shoot()
 {
-    return new Projectile(x, y, game);
+    if (shootTime == 0)
+    {
+        shootTime = shootCadence;
+        return new Projectile(x, y, game);
+    }
+    else
+    {
+        return nullptr;
+    }
 }

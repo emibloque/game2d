@@ -27,4 +27,6 @@ public:
   bool controlShoot = false;
   int controlMoveY = 0;
   int controlMoveX = 0;
+
+  int newEnemyTime = 0;
 };
