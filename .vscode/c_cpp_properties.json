@@ -12,6 +12,8 @@
         "/Library/Frameworks"
       ],
       "intelliSenseMode": "clang-x64",
+      "cStandard": "c11",
+      "cppStandard": "c++17",
       "browse": {
         "path": [
           "/usr/local/include",
