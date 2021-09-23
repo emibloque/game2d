@@ -7,6 +7,7 @@
 #include "Background.h"
 #include "Enemy.h"
 #include "Projectile.h"
+#include "Text.h"
 
 class GameLayer : public Layer
 {
@@ -23,6 +24,9 @@ public:
   list<Projectile *> projectiles;
 
   Background *background;
+  Actor *backgroundPoints;
+  Text *textPoints;
+  int points;
 
   bool controlShoot = false;
   int controlMoveY = 0;

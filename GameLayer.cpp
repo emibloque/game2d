@@ -9,8 +9,12 @@ GameLayer::GameLayer(Game *game)
 
 void GameLayer::init()
 {
+  points = 0;
+  textPoints = new Text("0", WIDTH * .90, HEIGHT * .08, game);
+
   player = new Player(50, 50, game);
   background = new Background("res/fondo.png", WIDTH * .5, HEIGHT * .5, game);
+  backgroundPoints = new Actor("res/icono_puntos.png", WIDTH * .85, HEIGHT * .08, 24, 24, game);
 
   projectiles.clear(); // Vaciar por si reiniciamos el juego
 
@@ -212,6 +216,8 @@ void GameLayer::update()
         {
           deleteEnemies.push_back(enemy);
         }
+        points++;
+        textPoints->content = to_string(points);
       }
     }
   }
@@ -243,5 +249,9 @@ void GameLayer::draw()
   {
     enemy->draw();
   }
+
+  backgroundPoints->draw();
+  textPoints->draw();
+
   SDL_RenderPresent(game->renderer); // Renderiza
 }
