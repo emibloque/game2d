@@ -3,6 +3,7 @@
     "algorithm": "cpp",
     "iosfwd": "cpp",
     "list": "cpp",
-    "string": "cpp"
+    "string": "cpp",
+    "filesystem": "cpp"
   }
 }

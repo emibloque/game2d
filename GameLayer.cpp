@@ -182,6 +182,22 @@ void GameLayer::update()
   list<Enemy *> deleteEnemies;
   list<Projectile *> deleteProjectiles;
 
+  for (auto const &projectile : projectiles)
+  {
+    if (!projectile->isInRender())
+    {
+
+      bool pInList = std::find(deleteProjectiles.begin(),
+                               deleteProjectiles.end(),
+                               projectile) != deleteProjectiles.end();
+
+      if (!pInList)
+      {
+        deleteProjectiles.push_back(projectile);
+      }
+    }
+  }
+
   for (auto const &enemy : enemies)
   {
     for (auto const &projectile : projectiles)
@@ -231,6 +247,7 @@ void GameLayer::update()
   for (auto const &delProjectile : deleteProjectiles)
   {
     projectiles.remove(delProjectile);
+    delete delProjectile;
   }
   deleteProjectiles.clear();
 }

@@ -15,6 +15,11 @@ Actor::Actor(string filename, float x, float y, int width, int height, Game *gam
   this->height = height;
 }
 
+Actor::~Actor()
+{
+  SDL_DestroyTexture(texture);
+}
+
 void Actor::draw()
 {
   // Recorte en el fichero de la imagen
@@ -48,4 +53,10 @@ bool Actor::isOverlap(Actor *actor)
     overlap = true;
   }
   return overlap;
+}
+
+bool Actor::isInRender()
+{
+  return (x - width / 2 <= WIDTH && x + width / 2 >= 0 &&
+          y - height / 2 <= HEIGHT && y + height / 2 >= 0);
 }
