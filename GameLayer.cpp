@@ -12,6 +12,8 @@ void GameLayer::init()
   player = new Player(50, 50, game);
   background = new Background("res/fondo.png", WIDTH * .5, HEIGHT * .5, game);
 
+  projectiles.clear(); // Vaciar por si reiniciamos el juego
+
   enemies.clear();
   enemies.push_back(new Enemy(300, 50, game));
   enemies.push_back(new Enemy(300, 200, game));
@@ -27,6 +29,11 @@ void GameLayer::processControls()
 
   if (controlShoot)
   {
+    Projectile *newProjectile = player->shoot();
+    if (newProjectile != NULL)
+    {
+      projectiles.push_back(newProjectile);
+    }
   }
 
   if (controlMoveX > 0)
@@ -130,11 +137,32 @@ void GameLayer::update()
   {
     enemy->update();
   }
+
+  for (auto const &projectile : projectiles)
+  {
+    projectile->update();
+  }
+
+  // Colisiones
+  for (auto const &enemy : enemies)
+  {
+    if (player->isOverlap(enemy))
+    {
+      init();
+      return; // Cortar el for
+    }
+  }
 }
 
 void GameLayer::draw()
 {
   background->draw();
+
+  for (auto const &projectile : projectiles)
+  {
+    projectile->draw();
+  }
+
   player->draw();
   for (auto const &enemy : enemies)
   {

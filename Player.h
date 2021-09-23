@@ -2,6 +2,7 @@
 #pragma once
 
 #include "Actor.h"
+#include "Projectile.h"
 
 class Player : public Actor
 {
@@ -11,4 +12,8 @@ public:
   void update();
   void moveX(int axis);
   void moveY(int axis);
+  Projectile *shoot();
+
+  int shootCadence = 30;
+  int shootTime = 0;
 };
