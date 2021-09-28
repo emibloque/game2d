@@ -5,19 +5,31 @@ Player::Player(float x, float y, Game *game)
 {
 
     aIdleLeft = new Animation("res/jugador_idle_izquierda.png", width, height,
-                              320, 40, 6, 8, game);
+                              320, 40, 6, 8, true, game);
     aIdleRight = new Animation("res/jugador_idle_derecha.png", width, height,
-                               320, 40, 6, 8, game);
+                               320, 40, 6, 8, true, game);
     aRunningRight = new Animation("res/jugador_corriendo_derecha.png", width, height,
-                                  320, 40, 6, 8, game);
+                                  320, 40, 6, 8, true, game);
     aRunningLeft = new Animation("res/jugador_corriendo_izquierda.png", width, height,
-                                 320, 40, 6, 8, game);
+                                 320, 40, 6, 8, true, game);
+    aShootingRight = new Animation("res/jugador_disparando_derecha.png", width, height,
+                                   160, 40, 6, 4, false, game);
+    aShootingLeft = new Animation("res/jugador_disparando_izquierda.png", width, height,
+                                  160, 40, 6, 4, false, game);
     animation = aIdleRight;
 }
 
 void Player::update()
 {
-    animation->update();
+    bool hasAnimationEnded = animation->update();
+
+    if (hasAnimationEnded)
+    {
+        if (state == States::SHOOTING)
+        {
+            state = States::IDLE;
+        }
+    }
 
     if (shootTime > 0)
     {
@@ -35,18 +47,24 @@ void Player::update()
     }
 
     // Update state
-    if (vx != 0)
+    if (state != States::SHOOTING)
     {
-        state = States::MOVING;
-    }
-    else
-    {
-        state = States::IDLE;
+        if (vx != 0)
+        {
+            state = States::MOVING;
+        }
+        else
+        {
+            state = States::IDLE;
+        }
     }
 
     // Update animation
     switch (state)
     {
+    case States::SHOOTING:
+        animation = orientation == Orientation::RIGHT ? aShootingRight : aShootingLeft;
+        break;
     case States::MOVING:
         animation = orientation == Orientation::RIGHT ? aRunningRight : aRunningLeft;
         break;
@@ -74,8 +92,14 @@ Projectile *Player::shoot()
 {
     if (shootTime == 0)
     {
+        state = States::SHOOTING;
         shootTime = shootCadence;
-        return new Projectile(x, y, game);
+        auto projectile = new Projectile(x, y, game);
+        if (orientation == Orientation::LEFT)
+        {
+            projectile->vx *= -1;
+        }
+        return projectile;
     }
     else
     {

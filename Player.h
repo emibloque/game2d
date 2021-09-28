@@ -23,6 +23,8 @@ public:
   Animation *aIdleRight;
   Animation *aRunningRight;
   Animation *aRunningLeft;
+  Animation *aShootingRight;
+  Animation *aShootingLeft;
   Animation *animation;
 
   Orientation orientation = Orientation::RIGHT;

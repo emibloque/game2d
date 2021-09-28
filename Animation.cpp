@@ -2,13 +2,14 @@
 
 Animation::Animation(string filename, float actorWidth, float actorHeight,
                      float fileWidth, float fileHeight,
-                     int updateFrecuence, int totalFrames, Game *game)
+                     int updateFrecuence, int totalFrames, bool loop, Game *game)
 {
 
   // Cargar textura
   SDL_Surface *surface = IMG_Load(filename.c_str());
   texture = SDL_CreateTextureFromSurface(game->renderer, surface);
 
+  this->loop = loop;
   this->actorWidth = actorWidth;
   this->actorHeight = actorHeight;
   this->fileWidth = fileWidth;
@@ -42,6 +43,10 @@ bool Animation::update()
     if (currentFrame >= totalFrames)
     {
       currentFrame = 0;
+      if (!loop)
+      {
+        return true;
+      }
     }
   }
 

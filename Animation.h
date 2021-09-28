@@ -8,9 +8,10 @@ class Animation
 public:
   Animation(string filename, float actorWidth, float actorHeight,
             float fileWidth, float fileHeight,
-            int updateFrecuence, int totalFrames, Game *game);
+            int updateFrecuence, int totalFrames, bool loop, Game *game);
   bool update();
   void draw(int x, int y);
+  bool loop;
   int actorWidth;  // Actor Width
   int actorHeight; // Actor height
   int fileWidth;   // Sprite Sheet width
