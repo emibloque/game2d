@@ -13,7 +13,7 @@ void GameLayer::init()
   textPoints = new Text("0", WIDTH * .90, HEIGHT * .08, game);
 
   player = new Player(50, 50, game);
-  background = new Background("res/fondo_2.png", WIDTH * .5, HEIGHT * .5, game);
+  background = new Background("res/fondo_2.png", WIDTH * .5, HEIGHT * .5, -1, game);
   backgroundPoints = new Actor("res/icono_puntos.png", WIDTH * .85, HEIGHT * .08, 24, 24, game);
 
   projectiles.clear(); // Vaciar por si reiniciamos el juego
@@ -145,6 +145,7 @@ void GameLayer::keysToControls(SDL_Event event)
 
 void GameLayer::update()
 {
+  background->update();
 
   // Generar enemigos
   newEnemyTime--;
@@ -204,17 +205,6 @@ void GameLayer::update()
     {
       if (enemy->isOverlap(projectile))
       {
-        deleteEnemies.push_back(enemy);
-        deleteProjectiles.push_back(projectile);
-      }
-    }
-  }
-  for (auto const &enemy : enemies)
-  {
-    for (auto const &projectile : projectiles)
-    {
-      if (enemy->isOverlap(projectile))
-      {
         bool pInList = std::find(deleteProjectiles.begin(),
                                  deleteProjectiles.end(),
                                  projectile) != deleteProjectiles.end();
@@ -231,9 +221,9 @@ void GameLayer::update()
         if (!eInList)
         {
           deleteEnemies.push_back(enemy);
+          points++;
+          textPoints->content = to_string(points);
         }
-        points++;
-        textPoints->content = to_string(points);
       }
     }
   }
