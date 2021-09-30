@@ -8,6 +8,10 @@
 #include "Enemy.h"
 #include "Projectile.h"
 #include "Text.h"
+#include "Tile.h"
+
+#include <fstream>
+#include <sstream>
 
 class GameLayer : public Layer
 {
@@ -33,4 +37,9 @@ public:
   int controlMoveX = 0;
 
   int newEnemyTime = 0;
+
+  void loadMap(string name);
+  void loadMapObject(char character, int x, int y);
+  int mapWidth;
+  list<Tile *> tiles;
 };
