@@ -10,6 +10,10 @@ public:
   void update();
   void draw() override;
 
+  void impacted();
+  States state = States::MOVING;
+
   Animation *aMoving;
+  Animation *aDying;
   Animation *animation;
 };
