@@ -153,6 +153,12 @@ void GameLayer::update()
   // }
 
   player->update();
+
+  if (player->y > HEIGHT + 100)
+  {
+    init();
+    return;
+  }
   for (auto const &enemy : enemies)
   {
     enemy->update();
