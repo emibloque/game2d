@@ -7,6 +7,7 @@ using namespace std;
 #include <SDL.h>
 #include <SDL_image.h>
 #include <SDL_ttf.h>
+#include <map>
 
 #include "Layer.h"
 class Layer;
@@ -32,6 +33,9 @@ public:
 	bool loopActive;				// Juego activo
 
 	Layer *gameLayer;
+
+	SDL_Texture *getTexture(string filename);
+	map<string, SDL_Texture *> mapTextures;
 };
 
 enum class States
