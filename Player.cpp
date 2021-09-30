@@ -21,6 +21,11 @@ Player::Player(float x, float y, Game *game)
 
 void Player::update()
 {
+    if (invulnerableTime > 0)
+    {
+        invulnerableTime--;
+    }
+
     bool hasAnimationEnded = animation->update();
 
     isOnAir = !collisionDown;
@@ -108,7 +113,15 @@ Projectile *Player::shoot()
 
 void Player::draw(float scrollX)
 {
-    animation->draw(x - scrollX, y);
+    if (invulnerableTime == 0)
+    {
+        animation->draw(x - scrollX, y);
+        return;
+    }
+    if (invulnerableTime % 10 >= 0 && invulnerableTime % 10 <= 5)
+    {
+        animation->draw(x - scrollX, y);
+    }
 }
 
 void Player::jump()
@@ -118,4 +131,15 @@ void Player::jump()
         vy = -16;
         isOnAir = true;
     }
+}
+
+void Player::loseLife()
+{
+    if (invulnerableTime > 0 || lifes <= 0)
+    {
+        return;
+    }
+
+    lifes--;
+    invulnerableTime = 100;
 }

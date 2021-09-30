@@ -174,8 +174,12 @@ void GameLayer::update()
   {
     if (player->isOverlap(enemy))
     {
-      init();
-      return; // Cortar el for
+      player->loseLife();
+      if (player->lifes <= 0)
+      {
+        init();
+        return; // Cortar el for
+      }
     }
   }
 

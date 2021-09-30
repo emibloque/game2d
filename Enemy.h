@@ -16,4 +16,6 @@ public:
   Animation *aMoving;
   Animation *aDying;
   Animation *animation;
+
+  float vxIntelligence;
 };
