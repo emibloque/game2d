@@ -78,9 +78,6 @@ void Player::update()
     // Update animation
     switch (state)
     {
-    case States::JUMPING:
-        animation = orientation == Orientation::RIGHT ? aJumpingRight : aJumpingLeft;
-        break;
     case States::SHOOTING:
         animation = orientation == Orientation::RIGHT ? aShootingRight : aShootingLeft;
         break;
