@@ -346,5 +346,18 @@ void GameLayer::loadMapObject(char character, int x, int y)
 
 void GameLayer::calculateScroll()
 {
-  scrollX = player->x - 200;
+  if (player->x < WIDTH * .3 ||
+      player->x > mapWidth - WIDTH * .7)
+  {
+    return;
+  }
+
+  if (player->x - scrollX < WIDTH * .3)
+  {
+    scrollX = player->x - WIDTH * .3;
+  }
+  if (player->x - scrollX > WIDTH * .7)
+  {
+    scrollX = player->x - WIDTH * .7;
+  }
 }
