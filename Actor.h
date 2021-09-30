@@ -9,7 +9,7 @@ public:
   ~Actor();
   virtual void draw(float scrollX = 0);
   bool isOverlap(Actor *actor);
-  bool isInRender();
+  bool isInRender(float scrollX = 0);
 
   SDL_Texture *texture;
   int x;
