@@ -23,6 +23,8 @@ void Player::update()
 {
     bool hasAnimationEnded = animation->update();
 
+    isOnAir = !collisionDown;
+
     if (hasAnimationEnded)
     {
         if (state == States::SHOOTING)
@@ -107,4 +109,13 @@ Projectile *Player::shoot()
 void Player::draw(float scrollX)
 {
     animation->draw(x - scrollX, y);
+}
+
+void Player::jump()
+{
+    if (!isOnAir)
+    {
+        vy = -16;
+        isOnAir = true;
+    }
 }

@@ -29,4 +29,7 @@ public:
 
   Orientation orientation = Orientation::RIGHT;
   States state = States::IDLE;
+
+  void jump();
+  bool isOnAir = false;
 };

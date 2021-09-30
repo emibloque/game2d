@@ -9,7 +9,7 @@ GameLayer::GameLayer(Game *game)
 
 void GameLayer::init()
 {
-  space = new Space(0);
+  space = new Space(1);
   scrollX = 0;
   tiles.clear();
   points = 0;
@@ -56,18 +56,9 @@ void GameLayer::processControls()
     player->moveX(0);
   }
 
-  // Eje Y
-  if (controlMoveY > 0)
+  if (controlMoveY < 0)
   {
-    player->moveY(1);
-  }
-  else if (controlMoveY < 0)
-  {
-    player->moveY(-1);
-  }
-  else
-  {
-    player->moveY(0);
+    player->jump();
   }
 }
 
