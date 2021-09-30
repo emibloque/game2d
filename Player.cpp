@@ -16,6 +16,10 @@ Player::Player(float x, float y, Game *game)
                                    160, 40, 6, 4, false, game);
     aShootingLeft = new Animation("res/jugador_disparando_izquierda.png", width, height,
                                   160, 40, 6, 4, false, game);
+    aJumpingLeft = new Animation("res/jugador_saltando_izquierda.png", width, height,
+                                 160, 40, 6, 4, false, game);
+    aJumpingRight = new Animation("res/jugador_saltando_derecha.png", width, height,
+                                  160, 40, 6, 4, false, game);
     animation = aIdleRight;
 }
 
@@ -66,9 +70,17 @@ void Player::update()
         }
     }
 
+    if (isOnAir)
+    {
+        state = States::JUMPING;
+    }
+
     // Update animation
     switch (state)
     {
+    case States::JUMPING:
+        animation = orientation == Orientation::RIGHT ? aJumpingRight : aJumpingLeft;
+        break;
     case States::SHOOTING:
         animation = orientation == Orientation::RIGHT ? aShootingRight : aShootingLeft;
         break;

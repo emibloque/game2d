@@ -21,6 +21,8 @@ public:
   void draw(float scrollX = 0) override;
   Animation *aIdleLeft;
   Animation *aIdleRight;
+  Animation *aJumpingRight;
+  Animation *aJumpingLeft;
   Animation *aRunningRight;
   Animation *aRunningLeft;
   Animation *aShootingRight;
