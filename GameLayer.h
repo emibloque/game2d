@@ -9,6 +9,7 @@
 #include "Projectile.h"
 #include "Text.h"
 #include "Tile.h"
+#include "Space.h"
 
 #include <fstream>
 #include <sstream>
@@ -45,4 +46,6 @@ public:
 
   void calculateScroll();
   float scrollX = 0;
+
+  Space *space;
 };

@@ -73,9 +73,6 @@ void Player::update()
         animation = orientation == Orientation::RIGHT ? aIdleRight : aIdleLeft;
         break;
     }
-
-    x = x + vx;
-    y = y + vy;
 }
 
 void Player::moveX(int axis)

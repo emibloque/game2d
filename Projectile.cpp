@@ -8,5 +8,4 @@ Projectile::Projectile(float x, float y, Game *game) : Actor("res/disparo_jugado
 
 void Projectile::update()
 {
-  x = x + vx;
 }

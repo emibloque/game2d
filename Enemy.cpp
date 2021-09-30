@@ -35,7 +35,6 @@ void Enemy::update()
     animation = aMoving;
 
     vx = -1;
-    x = x + vx;
     break;
   }
 }
