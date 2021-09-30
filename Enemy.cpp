@@ -40,9 +40,9 @@ void Enemy::update()
   }
 }
 
-void Enemy::draw()
+void Enemy::draw(float scrollX)
 {
-  animation->draw(x, y);
+  animation->draw(x - scrollX, y);
 }
 
 void Enemy::impacted()

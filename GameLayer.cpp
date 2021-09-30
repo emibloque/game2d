@@ -9,6 +9,7 @@ GameLayer::GameLayer(Game *game)
 
 void GameLayer::init()
 {
+  scrollX = 0;
   tiles.clear();
   points = 0;
   textPoints = new Text("0", WIDTH * .90, HEIGHT * .08, game);
@@ -255,22 +256,24 @@ void GameLayer::update()
 
 void GameLayer::draw()
 {
+  calculateScroll();
+
   background->draw();
 
   for (auto const &tile : tiles)
   {
-    tile->draw();
+    tile->draw(scrollX);
   }
 
   for (auto const &projectile : projectiles)
   {
-    projectile->draw();
+    projectile->draw(scrollX);
   }
 
-  player->draw();
+  player->draw(scrollX);
   for (auto const &enemy : enemies)
   {
-    enemy->draw();
+    enemy->draw(scrollX);
   }
 
   backgroundPoints->draw();
@@ -339,4 +342,9 @@ void GameLayer::loadMapObject(char character, int x, int y)
     break;
   }
   }
+}
+
+void GameLayer::calculateScroll()
+{
+  scrollX = player->x - 200;
 }

@@ -18,7 +18,7 @@ public:
   int shootCadence = 30;
   int shootTime = 0;
 
-  void draw() override;
+  void draw(float scrollX = 0) override;
   Animation *aIdleLeft;
   Animation *aIdleRight;
   Animation *aRunningRight;

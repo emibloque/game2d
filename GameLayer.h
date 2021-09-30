@@ -42,4 +42,7 @@ public:
   void loadMapObject(char character, int x, int y);
   int mapWidth;
   list<Tile *> tiles;
+
+  void calculateScroll();
+  float scrollX = 0;
 };
