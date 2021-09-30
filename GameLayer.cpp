@@ -186,7 +186,7 @@ void GameLayer::update()
 
   for (auto const &projectile : projectiles)
   {
-    if (!projectile->isInRender(scrollX))
+    if (!projectile->isInRender(scrollX) || projectile->vx == 0)
     {
 
       bool pInList = std::find(deleteProjectiles.begin(),
